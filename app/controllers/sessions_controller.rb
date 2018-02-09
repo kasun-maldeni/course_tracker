@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  skip_before_action :require_login, only: [:new, :create]
+  
   def new
   end
 
@@ -13,4 +15,3 @@ class SessionsController < ApplicationController
     session[:user_id] = nil
   end
 end
-
