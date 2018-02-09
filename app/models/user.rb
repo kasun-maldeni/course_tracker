@@ -3,7 +3,7 @@ class User < ApplicationRecord
 
   private
   def self.generate_user email
-    User.create(email: email, uuid: SecureRandom.uuid, password: SecureRandom.hex)
+    User.create(email: email, uuid: SecureRandom.uuid, password: SecureRandom.hex, active: false)
   end
 end
 
