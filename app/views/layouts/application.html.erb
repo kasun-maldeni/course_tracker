@@ -9,6 +9,11 @@
   </head>
 
   <body>
+    <% if logged_in? %>
+      <%= form_tag '/sessions', method: 'delete' do %>
+        <%= submit_tag 'logout' %>
+      <% end %>
+    <% end %>
     <%= yield %>
   </body>
 </html>
