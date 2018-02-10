@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_secure_password
+  belongs_to :group
 
   private
   def self.generate_user email
