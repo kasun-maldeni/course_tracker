@@ -6,6 +6,7 @@ class UsersController < ApplicationController
   def first_update
     @user = User.find_by(uuid: params[:uuid])
     if @user.update(user_params)
+      session[:user_id] = @user.id
       flash[:success] = "You've signed up successfully!"
       redirect_to root_path
     else
@@ -18,4 +19,3 @@ class UsersController < ApplicationController
     params.require(:user).permit(:email, :first_name, :last_name, :github_username, :password, :password_confirmation)
   end
 end
-
