@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>CourseManager</title>
+    <title>Course Manager</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -9,10 +9,20 @@
   </head>
 
   <body>
+    <h1>Course Manager</h1>
     <% if logged_in? %>
-      <%= form_tag '/sessions', method: 'delete' do %>
-        <%= submit_tag 'logout' %>
-      <% end %>
+      <nav>
+        <ul>
+          <li><%= link_to 'dashboard', root_path %></li>
+          <li><%= link_to 'warmups', warmups_path %></li>
+          <li><%= link_to 'homework', homework_path %></li>
+          <li>
+            <%= form_tag '/sessions', method: 'delete' do %>
+              <%= submit_tag 'logout' %>
+            <% end %>
+          </li>
+        </ul>
+      </nav>
     <% end %>
     <% flash.each do |key, value| %>
       <%= content_tag :div, value, class: "flash #{key}" %>
