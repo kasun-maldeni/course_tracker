@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180218111142) do
+ActiveRecord::Schema.define(version: 20180218124727) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "feedbacks", force: :cascade do |t|
+    t.bigint "user_group_task_id"
+    t.text "message"
+    t.bigint "author_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["author_id"], name: "index_feedbacks_on_author_id"
+    t.index ["user_group_task_id"], name: "index_feedbacks_on_user_group_task_id"
+  end
 
   create_table "group_task_categories", force: :cascade do |t|
     t.string "name"
@@ -70,6 +80,8 @@ ActiveRecord::Schema.define(version: 20180218111142) do
     t.index ["group_id"], name: "index_users_on_group_id"
   end
 
+  add_foreign_key "feedbacks", "user_group_tasks"
+  add_foreign_key "feedbacks", "users", column: "author_id"
   add_foreign_key "group_tasks", "group_task_categories", column: "category_id"
   add_foreign_key "group_tasks", "groups"
   add_foreign_key "group_tasks", "tasks"
