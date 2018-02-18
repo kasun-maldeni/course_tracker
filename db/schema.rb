@@ -10,10 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180211151420) do
+ActiveRecord::Schema.define(version: 20180218093945) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "group_task_categories", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "group_tasks", force: :cascade do |t|
     t.bigint "group_id"
@@ -21,6 +27,8 @@ ActiveRecord::Schema.define(version: 20180211151420) do
     t.datetime "release_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "category_id"
+    t.index ["category_id"], name: "index_group_tasks_on_category_id"
     t.index ["group_id"], name: "index_group_tasks_on_group_id"
     t.index ["task_id"], name: "index_group_tasks_on_task_id"
   end
@@ -52,6 +60,7 @@ ActiveRecord::Schema.define(version: 20180211151420) do
     t.index ["group_id"], name: "index_users_on_group_id"
   end
 
+  add_foreign_key "group_tasks", "group_task_categories", column: "category_id"
   add_foreign_key "group_tasks", "groups"
   add_foreign_key "group_tasks", "tasks"
   add_foreign_key "users", "groups"

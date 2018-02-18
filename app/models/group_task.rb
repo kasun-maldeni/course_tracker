@@ -1,6 +1,7 @@
 class GroupTask < ApplicationRecord
   belongs_to :group
   belongs_to :task
+  belongs_to :category, class_name: 'GroupTaskCategory', foreign_key: 'category_id'
 
   def release_date_user_time
     release_date.in_time_zone('Melbourne').strftime('%d %b, %I:%M %p')
