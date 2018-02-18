@@ -1,16 +1,17 @@
-<h2 data-gh-username="<%= current_user.github_username %>">Dashboard</h2>
-
-<p>Recent tasks released:</p>
-
-<table>
-  <tr>
-    <th>Task</th>
-    <th>Released</th>
-  </tr>
-  <% @group_tasks.each do |gt| %>
-  <tr>
-    <td><%= link_to gt.task.name, gt.task.link %></td>
-    <td data-datetime="<%= gt.release_date %>"></td>
-  </tr>
-  <% end %>
-</table>
+<section class="dashboard index" data-gh-username="<%= current_user.github_username %>">
+  <h2>Dashboard</h2>
+  <p>Github status: <span class="github-status"></span></p>
+  <p>Recent tasks released:</p>
+  <table>
+    <tr>
+      <th>Task</th>
+      <th>Released</th>
+    </tr>
+    <% @group_tasks.each do |gt| %>
+    <tr>
+      <td><%= link_to gt.task.name, gt.task.link %></td>
+      <td data-datetime="<%= gt.release_date %>"></td>
+    </tr>
+    <% end %>
+  </table>
+</section>
