@@ -2,6 +2,10 @@ class GroupTask < ApplicationRecord
   belongs_to :group
   belongs_to :task
 
+  def release_date_user_time
+    release_date.in_time_zone('Melbourne').strftime('%d %b, %I:%M %p')
+  end
+
   scope :recent_tasks, ->(user) {
     where({
       group_id: user.group_id,
