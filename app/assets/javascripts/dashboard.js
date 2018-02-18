@@ -6,9 +6,10 @@
   });
 
   function checkGithubForHomework() {
-    QS('.github-status').textContent = 'Checking Github...'
-    searchGithub()
-    setInterval(searchGithub, 15*1000);
+    var gs = QS('.github-status > .message');
+    gs.textContent = 'Checking Github...';
+    searchGithub();
+    setInterval(searchGithub, 60*1000);
 
     function searchGithub() {
       var getPRs = fetch('https://api.github.com/repos/kasun-maldeni/WDI_14_HOMEWORK/pulls').then(function(response) {
@@ -19,10 +20,9 @@
           return req.user.login === ghUsername;
         })
       }).then(function(prFound) {
-        var message = prFound ? 'Homework submitted' : 'Waiting for submission';
-        QS('.github-status').textContent = message;
+        gs.textContent = prFound ? 'Homework submitted' : 'Waiting for submission';
       }).catch(function() {
-        QS('.github-status').textContent = 'Failed to connect to Github';
+        gs.textContent = 'Failed to connect to Github';
       });
     }
   }
