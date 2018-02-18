@@ -1,6 +1,6 @@
 class DashboardController < ApplicationController
   def index
-    @group_tasks = current_user.group.group_tasks.where(release_date: 12.hours.ago..Time.now).joins(:task).includes(:task)
+    @group_tasks = GroupTask.recent_tasks(current_user)
   end
 
   def warmups

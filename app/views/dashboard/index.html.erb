@@ -12,7 +12,7 @@
     <% @group_tasks.each do |gt| %>
     <tr>
       <td><%= link_to gt.task.name, gt.task.link %></td>
-      <td data-datetime="<%= gt.release_date %>"></td>
+      <td><%= time_ago_in_words(gt.release_date) + ' ago' %></td>
     </tr>
     <% end %>
   </table>
