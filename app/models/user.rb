@@ -4,4 +4,7 @@ class User < ApplicationRecord
                        length: {minimum: 8}
 
   belongs_to :group
+  has_many :user_group_tasks
+  has_many :group_tasks, through: :user_group_tasks
 end
+
