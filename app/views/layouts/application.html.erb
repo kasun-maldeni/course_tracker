@@ -9,9 +9,9 @@
   </head>
 
   <body>
-    <h1>Course Manager</h1>
     <% if logged_in? %>
       <nav>
+        <h1>Course Manager</h1>
         <ul>
           <li><%= link_to 'dashboard', root_path %></li>
           <li><%= link_to 'warmups', warmups_path %></li>

@@ -1,8 +1,11 @@
-<h1>Log in</h1>
-<%= form_tag '/sessions', method: 'post' do %>
-  <%= label_tag :email %>
-  <%= text_field_tag :email %>
-  <%= label_tag :password %>
-  <%= password_field_tag :password %>
-  <%= submit_tag "log in" %>
-<% end %>
+<h1>Course Manager</h1>
+<main class='log-in'>
+  <h2>Log in</h2>
+  <%= form_tag '/sessions', method: 'post' do %>
+    <%= label_tag :email %>
+    <%= text_field_tag :email %>
+    <%= label_tag :password %>
+    <%= password_field_tag :password %>
+    <%= submit_tag "log in" %>
+  <% end %>
+</main>
