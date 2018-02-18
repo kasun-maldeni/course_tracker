@@ -1,7 +1,7 @@
 class GroupTask < ApplicationRecord
   belongs_to :group
   belongs_to :task
-  belongs_to :category, class_name: 'GroupTaskCategory', foreign_key: 'category_id'
+  belongs_to :category, class_name: 'GroupTaskCategory'
   has_many :user_group_tasks
   has_many :users, through: :user_group_tasks
 
