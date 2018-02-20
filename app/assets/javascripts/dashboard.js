@@ -1,6 +1,6 @@
 (function(QS, QSA){
   document.addEventListener('turbolinks:load', function(event) {
-    if (document.querySelector('.dashboard.index')) {
+    if (QS('.dashboard.index')) {
       checkGithubForHomework();
     }
   });
@@ -9,7 +9,6 @@
     var gs = QS('.github-status > .message');
     gs.textContent = 'Checking Github...';
     searchGithub();
-    setInterval(searchGithub, 60*1000);
 
     function searchGithub() {
       var getPRs = fetch('https://api.github.com/repos/kasun-maldeni/WDI_14_HOMEWORK/pulls').then(function(response) {
