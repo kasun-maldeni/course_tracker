@@ -1,0 +1,15 @@
+<section class="dashboard task-progress">
+  <h2>Task Progress</h2>
+  <%= @ugt.complete.to_s %>
+  <%= local_time(@gt.release_date) %>
+  <%= link_to @gt.task.name, @gt.task.link, target: "_blank" %>
+  <table>
+    <% @feedbacks.each do |fb| %>
+    <tr>
+      <td><%= fb.message %></td>
+      <td><%= fb.author.first_name %></td>
+      <td><%= local_time(fb.created_at) %></td>
+    </tr>
+    <% end %>
+  </table>
+</section>

@@ -1,0 +1,11 @@
+<section class="dashboard warmups">
+  <h2>Warmups</h2>
+  <table>
+    <% @group_tasks.each do |gt| %>
+    <tr>
+      <td><%= link_to gt.task.name, gt.task.link, target: "_blank" %></td>
+      <td><%= time_ago_in_words(gt.release_date) + ' ago' %></td>
+    </tr>
+    <% end %>
+  </table>
+</section>
