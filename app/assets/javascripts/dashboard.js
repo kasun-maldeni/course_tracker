@@ -7,6 +7,7 @@
 
   function checkGithubForHomework() {
     var gs = QS('.github-status > .message');
+    var mi = QS('.github-status > .material-icons');
     gs.textContent = 'Checking Github...';
     setTimeout(searchGithub, 3000);
 
@@ -19,7 +20,14 @@
           return req.user.login === ghUsername;
         })
       }).then(function(prFound) {
-        gs.textContent = prFound ? 'Homework submitted!' : 'Waiting for homework submission';
+        gs.remove();
+        if (prFound) {
+          mi.textContent = 'check_circle';
+          mi.classList.add('success');
+        } else {
+          mi.textContent = 'cancel';
+          mi.classList.add('error');
+        }
       }).catch(function() {
         gs.textContent = 'Failed to connect to Github';
       });

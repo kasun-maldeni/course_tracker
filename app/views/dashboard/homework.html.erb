@@ -1,12 +1,22 @@
 <section class="dashboard homework">
   <h2>Homework</h2>
   <table>
+    <tr>
+      <th>Complete</th>
+      <th>Task</th>
+      <th>Release date</th>
+      <th>Feedback</th>
+    </tr>
     <% @group_tasks.each do |gt| %>
     <tr>
+      <% if gt.user_group_tasks.first.complete %>
+        <td><i class="material-icons success">check_circle</i></td>
+      <% else %>
+        <td><i class="material-icons error">cancel</i></td>
+      <% end %>
       <td><%= link_to gt.task.name, gt.task.link, target: "_blank" %></td>
       <td><%= local_time(gt.release_date) %></td>
-      <td><%= gt.user_group_tasks.first.complete.to_s %></td>
-      <td><%= link_to "feedback", "/task_progress/#{gt.user_group_tasks.first.id}" %></td>
+      <td><%= link_to(content_tag(:i, 'feedback', class: 'material-icons'), "/task_progress/#{gt.user_group_tasks.first.id}") %></td>
     </tr>
     <% end %>
   </table>

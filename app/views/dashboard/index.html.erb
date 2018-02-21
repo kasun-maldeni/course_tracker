@@ -3,11 +3,18 @@
     <%= content_tag :div, value, class: "flash #{key}" %>
   <% end %>
   <h2>Dashboard</h2>
-  <p class="github-status">Github status:
+  <p class="github-status">
+    <span>Homework submitted:</span>
     <span class="message"></span>
+    <i class="material-icons"></i>
   </p>
   <h3>Recent tasks released:</h3>
   <table>
+    <tr>
+      <th>Task</th>
+      <th>Released</th>
+      <th>Category</th>
+    </tr>
     <% @group_tasks.each do |gt| %>
     <tr>
       <td><%= link_to gt.task.name, gt.task.link, target: "_blank" %></td>

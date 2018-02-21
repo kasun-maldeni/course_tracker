@@ -1,6 +1,11 @@
 <section class="dashboard warmups">
   <h2>Warmups</h2>
   <table>
+    <tr>
+      <th>Task</th>
+      <th>Release date</th>
+      <th>Solution</th>
+    </tr>
     <% @group_tasks.each do |gt| %>
     <tr>
       <td><%= link_to gt.task.name, gt.task.link, target: "_blank" %></td>
