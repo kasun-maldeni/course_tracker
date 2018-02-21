@@ -12,7 +12,7 @@ class GroupTask < ApplicationRecord
   }
 
   scope :warmups, ->(user) {
-    by_category('warmups', user.group_id)
+    by_category('warmup', user.group_id)
   }
 
   scope :homework, ->(user) {
