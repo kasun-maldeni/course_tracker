@@ -2,7 +2,7 @@
   <h2>Task Progress</h2>
   <%= @ugt.complete.to_s %>
   <%= local_time(@ugt.group_task.release_date) %>
-  <%= link_to @ugt.group_task.task.name, @ugt.group_task.task.link, target: "_blank" %>
+  <%= link_to @ugt.group_task.task.name, @ugt.group_task.task.question_link, target: "_blank" %>
   <table>
     <% @ugt.feedbacks.each do |fb| %>
     <tr>

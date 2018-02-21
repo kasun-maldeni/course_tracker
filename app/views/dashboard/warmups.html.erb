@@ -8,8 +8,9 @@
     </tr>
     <% @group_tasks.each do |gt| %>
     <tr>
-      <td><%= link_to gt.task.name, gt.task.link, target: "_blank" %></td>
+      <td><%= link_to gt.task.name, gt.task.question_link, target: "_blank" %></td>
       <td><%= local_time(gt.release_date) %></td>
+      <td><%= link_to 'solution', gt.task.solution_link, target: "_blank" %></td>
     </tr>
     <% end %>
   </table>

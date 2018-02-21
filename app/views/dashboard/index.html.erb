@@ -17,7 +17,7 @@
     </tr>
     <% @group_tasks.each do |gt| %>
     <tr>
-      <td><%= link_to gt.task.name, gt.task.link, target: "_blank" %></td>
+      <td><%= link_to gt.task.name, gt.task.question_link, target: "_blank" %></td>
       <td><%= time_ago_in_words(gt.release_date) + ' ago' %></td>
       <td><%= gt.category.name %></td>
     </tr>

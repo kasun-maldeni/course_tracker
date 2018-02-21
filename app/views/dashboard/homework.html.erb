@@ -14,7 +14,7 @@
       <% else %>
         <td><i class="material-icons error">cancel</i></td>
       <% end %>
-      <td><%= link_to gt.task.name, gt.task.link, target: "_blank" %></td>
+      <td><%= link_to gt.task.name, gt.task.question_link, target: "_blank" %></td>
       <td><%= local_time(gt.release_date) %></td>
       <td><%= link_to(content_tag(:i, 'feedback', class: 'material-icons'), "/task_progress/#{gt.user_group_tasks.first.id}") %></td>
     </tr>
