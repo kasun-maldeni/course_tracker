@@ -8,5 +8,5 @@ Rails.application.routes.draw do
   patch '/sign_up/:uuid', to: 'users#first_update'
 
   resource :sessions, only: [:new, :create, :destroy]
-  get '/login', to: 'sessions#new'
+  get '/login', to: 'sessions#new', as: 'login'
 end
