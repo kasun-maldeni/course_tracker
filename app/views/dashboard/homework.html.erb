@@ -4,8 +4,9 @@
     <% @group_tasks.each do |gt| %>
     <tr>
       <td><%= link_to gt.task.name, gt.task.link, target: "_blank" %></td>
-      <td><%= time_ago_in_words(gt.release_date) + ' ago' %></td>
-      <td><%= link_to gt.user_group_tasks.first.complete.to_s, "/task_progress/#{gt.user_group_tasks.first.id}" %></td>
+      <td><%= local_time(gt.release_date) %></td>
+      <td><%= gt.user_group_tasks.first.complete.to_s %></td>
+      <td><%= link_to "feedback", "/task_progress/#{gt.user_group_tasks.first.id}" %></td>
     </tr>
     <% end %>
   </table>

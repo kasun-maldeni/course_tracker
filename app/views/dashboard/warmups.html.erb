@@ -4,7 +4,7 @@
     <% @group_tasks.each do |gt| %>
     <tr>
       <td><%= link_to gt.task.name, gt.task.link, target: "_blank" %></td>
-      <td><%= time_ago_in_words(gt.release_date) + ' ago' %></td>
+      <td><%= local_time(gt.release_date) %></td>
     </tr>
     <% end %>
   </table>
