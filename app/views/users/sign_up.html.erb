@@ -1,11 +1,25 @@
-<h1>Sign Up</h1>
-<%= form_for @user, url: {action: 'first_update'} do |f| %>
-  <%= f.text_field :email %>
-  <%= f.text_field :first_name %>
-  <%= f.text_field :last_name %>
-  <%= f.text_field :github_username %>
-  <%= f.password_field :password %>
-  <%= f.password_field :password_confirmation %>
-  <%= f.submit 'Sign Up' %>
-<% end %>
-
+<section class="users sign-up">
+  <h2>Sign Up</h2>
+  <% if @errors %>
+    <ul class="error-messages">
+      <% @errors.each do |error| %>
+        <%= content_tag :li, error %>
+      <% end %>
+    </ul>
+  <% end %>
+  <%= form_for @user, url: {action: 'first_update'} do |f| %>
+    <%= f.label :email %>
+    <%= f.email_field :email %>
+    <%= f.label :first_name %>
+    <%= f.text_field :first_name %>
+    <%= f.label :last_name %>
+    <%= f.text_field :last_name %>
+    <%= f.label :github_username %>
+    <%= f.text_field :github_username %>
+    <%= f.label :password %>
+    <%= f.password_field :password %>
+    <%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation %>
+    <%= f.submit 'Sign Up' %>
+  <% end %>
+</section>

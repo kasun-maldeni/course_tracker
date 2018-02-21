@@ -11,6 +11,7 @@ class UsersController < ApplicationController
       flash[:success] = "You've signed up successfully!"
       redirect_to root_path
     else
+      @errors = @user.errors.full_messages
       render 'sign_up'
     end
   end
