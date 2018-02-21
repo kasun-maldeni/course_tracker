@@ -1,0 +1,10 @@
+.sessions.new {
+  width: 60%;
+  margin: 0 auto;
+}
+
+@media screen and (max-width: 48em) {
+  .sessions.new {
+    width: 100%;
+  }
+}

@@ -1,0 +1,174 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:300');
+
+/* colors - general */
+$body-font-color: black;
+$body-bg-color: rgb(234, 234, 234);
+$header-nav-bg-color: rgb(190, 190, 190);
+
+/* colors - form */
+$errors-color: rgb(255, 163, 163);
+$success-color: rgb(163, 255, 172);
+$submit-button-color: rgb(0, 161, 255);
+
+/* fonts */
+$body-font: 'Roboto', sans-serif;
+
+/* mixins */
+@mixin flex($dir: row, $main-axis: flex-start, $cross-axis: stretch) {
+  display: flex;
+  flex-direction: $dir;
+  justify-content: $main-axis;
+  align-items: $cross-axis;
+}
+
+@mixin conceal-link {
+  text-decoration: none;
+  color: $body-font-color;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  color: $body-font-color;
+  background-color: $body-bg-color;
+  font-family: $body-font;
+}
+
+.content-container {
+  width: 65%;
+  margin: 0 auto;
+}
+
+/* header */
+header {
+  nav {
+    background-color: $header-nav-bg-color;
+    .content-container {
+      @include flex(row, space-between, center);
+    }
+  }
+}
+
+nav {
+  ul {
+    @include flex(row);
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    li {
+      padding: 0 1em;
+    }
+  }
+  a {
+    @include conceal-link;
+    transition: color 0.2s;
+  }
+  a:hover {
+    color: $submit-button-color;
+  }
+  .log-out {
+    input {
+      padding: 0;
+      color: inherit;
+      font-weight: normal;
+      background-color: inherit;
+      border: none;
+      cursor: pointer;
+      transition: color 0.5s;
+    }
+    input:hover {
+      color: red;
+    }
+  }
+}
+
+/* fonts */
+h1 {
+  text-align: center;
+  letter-spacing: 0.2em;
+  a {
+    @include conceal-link;
+  }
+}
+
+/* forms */
+label {
+  display: block;
+}
+
+input {
+  padding: 0.7em;
+  margin: 0 1em 1em 0;
+  width: 100%;
+  font-size: 1em;
+}
+
+input[type=submit] {
+  margin: 0;
+  background-color: $submit-button-color;
+  font-weight: bold;
+  color: white;
+}
+
+.field_with_errors {
+  color: red;
+  input {
+    border: 1px solid $errors-color;
+  }
+}
+
+.error-messages {
+  background-color: $errors-color;
+  padding: 0 1em 1em 2em;
+  li {
+    padding-top: 1em;
+  }
+}
+
+/* flash messages */
+@keyframes flash-hide {
+  from {
+    width: 100%;
+  }
+  to {
+    opacity: 0;
+    width: 50%;
+  }
+}
+
+.flash {
+  padding: 1em;
+  margin: 0 auto;
+  animation-name: flash-hide;
+  animation-duration: 3s;
+  animation-delay: 2s;
+  animation-fill-mode: forwards;
+}
+
+.flash.error {
+  background-color: $errors-color;
+}
+
+.flash.success {
+  background-color: $success-color;
+}
+
+@media screen and (max-width: 64em) {
+  .content-container {
+    width: 90%;
+  }
+}
+
+@media screen and (max-width: 48em) {
+  header nav {
+    .content-container {
+      flex-direction: column;
+    }
+    ul {
+      padding-bottom: 1em;
+    }
+  }
+}

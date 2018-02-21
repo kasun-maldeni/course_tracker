@@ -1,0 +1,10 @@
+.users.sign-up {
+  width: 60%;
+  margin: 0 auto;
+}
+
+@media screen and (max-width: 48em) {
+  .users.sign-up {
+    width: 100%;
+  }
+}
