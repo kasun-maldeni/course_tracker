@@ -8,7 +8,7 @@
   function checkGithubForHomework() {
     var gs = QS('.github-status > .message');
     gs.textContent = 'Checking Github...';
-    searchGithub();
+    setTimeout(searchGithub, 3000);
 
     function searchGithub() {
       var getPRs = fetch('https://api.github.com/repos/kasun-maldeni/WDI_14_HOMEWORK/pulls').then(function(response) {
@@ -19,7 +19,7 @@
           return req.user.login === ghUsername;
         })
       }).then(function(prFound) {
-        gs.textContent = prFound ? 'Homework submitted' : 'Waiting for submission';
+        gs.textContent = prFound ? 'Homework submitted!' : 'Waiting for homework submission';
       }).catch(function() {
         gs.textContent = 'Failed to connect to Github';
       });
