@@ -1,4 +1,7 @@
 <section class="sessions new">
+  <% flash.each do |key, value| %>
+    <%= content_tag :div, value, class: "flash #{key}" %>
+  <% end %>
   <main class='log-in'>
     <h2>Log in</h2>
     <%= form_tag '/sessions', method: 'post' do %>

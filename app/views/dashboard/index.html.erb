@@ -1,4 +1,7 @@
 <section class="dashboard index" data-gh-username="<%= current_user.github_username %>">
+  <% flash.each do |key, value| %>
+    <%= content_tag :div, value, class: "flash #{key}" %>
+  <% end %>
   <h2>Dashboard</h2>
   <p class="github-status">Github status:
     <span class="message"></span>

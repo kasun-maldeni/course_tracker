@@ -32,9 +32,6 @@
     <% end %>
     <section class='view-parent'>
       <section class='content-container'>
-        <% flash.each do |key, value| %>
-          <%= content_tag :div, value, class: "flash #{key}" %>
-        <% end %>
         <%= yield %>
       </section>
     </section>
