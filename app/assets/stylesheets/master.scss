@@ -138,6 +138,12 @@ input[type=submit] {
   }
 }
 
+/* tables */
+th, td {
+  padding: 0.3em 1em 0.3em 0;
+  text-align: center;
+}
+
 /* flash messages */
 @keyframes flash-hide {
   from {
