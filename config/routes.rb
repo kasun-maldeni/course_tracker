@@ -9,4 +9,9 @@ Rails.application.routes.draw do
 
   resource :sessions, only: [:new, :create, :destroy]
   get '/login', to: 'sessions#new', as: 'login'
+
+  get '/admin', to: 'admin#index', as: 'admin'
+  namespace :admin do
+    resources :tasks, only: [:index, :new, :create]
+  end
 end

@@ -1,0 +1,16 @@
+<section class="admin tasks index">
+  <h2>Tasks</h2>
+  <%= link_to 'new task', new_admin_task_path %>
+  <table>
+    <tr>
+      <th>Question</th>
+      <th>Solution</th>
+    </tr>
+    <% @tasks.each do |t| %>
+      <tr>
+        <td><%= link_to t.name, t.question_link, target: '_blank' %></td>
+        <td><%= link_to 'solution', t.solution_link, target: '_blank' %></td>
+      </tr>
+    <% end %>
+  </table>
+</section>

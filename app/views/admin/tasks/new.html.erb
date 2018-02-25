@@ -1,0 +1,19 @@
+<section class="admin tasks new">
+  <h2>Create Task</h2>
+  <% if @errors %>
+    <ul class="error-messages">
+      <% @errors.each do |error| %>
+        <%= content_tag :li, error %>
+      <% end %>
+    </ul>
+  <% end %>
+  <%= form_for @task, url: {action: :create} do |f| %>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+    <%= f.label :question_link %>
+    <%= f.text_field :question_link %>
+    <%= f.label :solution_link %>
+    <%= f.text_field :solution_link %>
+    <%= f.submit %>
+  <% end %>
+</section>

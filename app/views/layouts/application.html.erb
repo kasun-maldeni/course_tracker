@@ -15,6 +15,9 @@
           <section class='content-container'>
             <h1><%= link_to website_name, root_path %></h1>
             <ul>
+              <% if current_user.admin? %>
+                <li><%= link_to 'admin', admin_path %></li>
+              <% end %>
               <li><%= link_to 'dashboard', root_path %></li>
               <li><%= link_to 'warmups', warmups_path %></li>
               <li><%= link_to 'homework', homework_path %></li>
