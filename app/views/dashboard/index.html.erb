@@ -15,11 +15,11 @@
       <th>Released</th>
       <th>Category</th>
     </tr>
-    <% @group_tasks.each do |gt| %>
+    <% @cohort_tasks.each do |ct| %>
     <tr>
-      <td><%= link_to gt.task.name, gt.task.question_link, target: "_blank" %></td>
-      <td><%= time_ago_in_words(gt.release_date) + ' ago' %></td>
-      <td><%= gt.category.name %></td>
+      <td><%= link_to ct.task.name, ct.task.question_link, target: "_blank" %></td>
+      <td><%= time_ago_in_words(ct.release_date) + ' ago' %></td>
+      <td><%= ct.category.name %></td>
     </tr>
     <% end %>
   </table>

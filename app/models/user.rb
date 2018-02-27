@@ -1,7 +1,7 @@
 class User < ApplicationRecord
-  belongs_to :group
-  has_many :user_group_tasks
-  has_many :group_tasks, through: :user_group_tasks
+  belongs_to :cohort
+  has_many :user_cohort_tasks
+  has_many :cohort_tasks, through: :user_cohort_tasks
 
   has_secure_password
   validates :email, :first_name, :last_name, :github_username, presence: true

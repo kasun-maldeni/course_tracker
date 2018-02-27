@@ -10,43 +10,43 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180221190418) do
+ActiveRecord::Schema.define(version: 20180225234304) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "feedbacks", force: :cascade do |t|
-    t.bigint "user_group_task_id"
-    t.text "message"
-    t.bigint "author_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["author_id"], name: "index_feedbacks_on_author_id"
-    t.index ["user_group_task_id"], name: "index_feedbacks_on_user_group_task_id"
-  end
-
-  create_table "group_task_categories", force: :cascade do |t|
+  create_table "cohort_task_categories", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "group_tasks", force: :cascade do |t|
-    t.bigint "group_id"
+  create_table "cohort_tasks", force: :cascade do |t|
+    t.bigint "cohort_id"
     t.bigint "task_id"
     t.datetime "release_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "category_id"
-    t.index ["category_id"], name: "index_group_tasks_on_category_id"
-    t.index ["group_id"], name: "index_group_tasks_on_group_id"
-    t.index ["task_id"], name: "index_group_tasks_on_task_id"
+    t.index ["category_id"], name: "index_cohort_tasks_on_category_id"
+    t.index ["cohort_id"], name: "index_cohort_tasks_on_cohort_id"
+    t.index ["task_id"], name: "index_cohort_tasks_on_task_id"
   end
 
-  create_table "groups", force: :cascade do |t|
+  create_table "cohorts", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "feedbacks", force: :cascade do |t|
+    t.bigint "user_cohort_task_id"
+    t.text "message"
+    t.bigint "author_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["author_id"], name: "index_feedbacks_on_author_id"
+    t.index ["user_cohort_task_id"], name: "index_feedbacks_on_user_cohort_task_id"
   end
 
   create_table "tasks", force: :cascade do |t|
@@ -57,14 +57,14 @@ ActiveRecord::Schema.define(version: 20180221190418) do
     t.text "solution_link"
   end
 
-  create_table "user_group_tasks", force: :cascade do |t|
+  create_table "user_cohort_tasks", force: :cascade do |t|
     t.bigint "user_id"
-    t.bigint "group_task_id"
+    t.bigint "cohort_task_id"
     t.boolean "complete"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["group_task_id"], name: "index_user_group_tasks_on_group_task_id"
-    t.index ["user_id"], name: "index_user_group_tasks_on_user_id"
+    t.index ["cohort_task_id"], name: "index_user_cohort_tasks_on_cohort_task_id"
+    t.index ["user_id"], name: "index_user_cohort_tasks_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -76,18 +76,18 @@ ActiveRecord::Schema.define(version: 20180221190418) do
     t.string "uuid"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "group_id"
+    t.bigint "cohort_id"
     t.boolean "signed_up"
     t.boolean "admin"
-    t.index ["group_id"], name: "index_users_on_group_id"
+    t.index ["cohort_id"], name: "index_users_on_cohort_id"
   end
 
-  add_foreign_key "feedbacks", "user_group_tasks"
+  add_foreign_key "cohort_tasks", "cohort_task_categories", column: "category_id"
+  add_foreign_key "cohort_tasks", "cohorts"
+  add_foreign_key "cohort_tasks", "tasks"
+  add_foreign_key "feedbacks", "user_cohort_tasks"
   add_foreign_key "feedbacks", "users", column: "author_id"
-  add_foreign_key "group_tasks", "group_task_categories", column: "category_id"
-  add_foreign_key "group_tasks", "groups"
-  add_foreign_key "group_tasks", "tasks"
-  add_foreign_key "user_group_tasks", "group_tasks"
-  add_foreign_key "user_group_tasks", "users"
-  add_foreign_key "users", "groups"
+  add_foreign_key "user_cohort_tasks", "cohort_tasks"
+  add_foreign_key "user_cohort_tasks", "users"
+  add_foreign_key "users", "cohorts"
 end

@@ -1,10 +1,10 @@
 <section class="dashboard task-progress">
   <h2>Task Progress</h2>
-  <%= @ugt.complete.to_s %>
-  <%= local_time(@ugt.group_task.release_date) %>
-  <%= link_to @ugt.group_task.task.name, @ugt.group_task.task.question_link, target: "_blank" %>
+  <%= @uct.complete.to_s %>
+  <%= local_time(@uct.cohort_task.release_date) %>
+  <%= link_to @uct.cohort_task.task.name, @uct.cohort_task.task.question_link, target: "_blank" %>
   <table>
-    <% @ugt.feedbacks.each do |fb| %>
+    <% @uct.feedbacks.each do |fb| %>
     <tr>
       <td><%= fb.message %></td>
       <td><%= fb.author.first_name %></td>
