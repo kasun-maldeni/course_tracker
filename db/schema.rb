@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180304165055) do
+ActiveRecord::Schema.define(version: 20180304171040) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,6 +62,14 @@ ActiveRecord::Schema.define(version: 20180304165055) do
     t.string "name"
   end
 
+  create_table "students", force: :cascade do |t|
+    t.bigint "user_id"
+    t.integer "homework_completion_percentage"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_students_on_user_id"
+  end
+
   create_table "tasks", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -104,6 +112,7 @@ ActiveRecord::Schema.define(version: 20180304165055) do
   add_foreign_key "cohort_users", "users"
   add_foreign_key "feedbacks", "user_cohort_tasks"
   add_foreign_key "feedbacks", "users", column: "author_id"
+  add_foreign_key "students", "users"
   add_foreign_key "user_cohort_tasks", "cohort_tasks"
   add_foreign_key "user_cohort_tasks", "users"
   add_foreign_key "users", "cohorts"
