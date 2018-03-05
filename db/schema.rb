@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180304141322) do
+ActiveRecord::Schema.define(version: 20180304162844) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -83,9 +83,11 @@ ActiveRecord::Schema.define(version: 20180304141322) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "cohort_id"
-    t.boolean "signed_up"
-    t.boolean "admin"
+    t.boolean "is_signed_up"
+    t.bigint "role_id"
+    t.boolean "is_active"
     t.index ["cohort_id"], name: "index_users_on_cohort_id"
+    t.index ["role_id"], name: "index_users_on_role_id"
   end
 
   add_foreign_key "cohort_tasks", "cohort_task_categories", column: "category_id"
@@ -96,4 +98,5 @@ ActiveRecord::Schema.define(version: 20180304141322) do
   add_foreign_key "user_cohort_tasks", "cohort_tasks"
   add_foreign_key "user_cohort_tasks", "users"
   add_foreign_key "users", "cohorts"
+  add_foreign_key "users", "roles"
 end

@@ -18,11 +18,11 @@ class UsersController < ApplicationController
 
   private
   def first_update_params
-    params.require(:user).permit(:email, :first_name, :last_name, :github_username, :password, :password_confirmation).merge(signed_up: true)
+    params.require(:user).permit(:email, :first_name, :last_name, :github_username, :password, :password_confirmation).merge(is_signed_up: true)
   end
 
   def user_already_signed_up
     @user = User.find_by(uuid: params[:uuid])
-    redirect_to root_path if @user.signed_up
+    redirect_to root_path if @user.is_signed_up
   end
 end
