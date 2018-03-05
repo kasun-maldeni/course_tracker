@@ -6,6 +6,6 @@ class AdminController < ApplicationController
 
   private
   def require_admin
-    redirect_to root_path unless current_user.admin?
+    redirect_to root_path unless current_user.role.name == "admin"
   end
 end
