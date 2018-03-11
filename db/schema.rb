@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180304171040) do
+ActiveRecord::Schema.define(version: 20180311121308) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,12 +32,15 @@ ActiveRecord::Schema.define(version: 20180304171040) do
     t.boolean "advanced"
     t.index ["category_id"], name: "index_cohort_tasks_on_category_id"
     t.index ["cohort_id"], name: "index_cohort_tasks_on_cohort_id"
+    t.index ["release_date"], name: "index_cohort_tasks_on_release_date"
     t.index ["task_id"], name: "index_cohort_tasks_on_task_id"
   end
 
   create_table "cohort_users", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "cohort_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["cohort_id"], name: "index_cohort_users_on_cohort_id"
     t.index ["user_id"], name: "index_cohort_users_on_user_id"
   end
@@ -60,6 +63,8 @@ ActiveRecord::Schema.define(version: 20180304171040) do
 
   create_table "roles", force: :cascade do |t|
     t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "students", force: :cascade do |t|
@@ -97,11 +102,10 @@ ActiveRecord::Schema.define(version: 20180304171040) do
     t.string "uuid"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "cohort_id"
     t.boolean "is_signed_up"
     t.bigint "role_id"
     t.boolean "is_active"
-    t.index ["cohort_id"], name: "index_users_on_cohort_id"
+    t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["role_id"], name: "index_users_on_role_id"
   end
 
@@ -115,6 +119,5 @@ ActiveRecord::Schema.define(version: 20180304171040) do
   add_foreign_key "students", "users"
   add_foreign_key "user_cohort_tasks", "cohort_tasks"
   add_foreign_key "user_cohort_tasks", "users"
-  add_foreign_key "users", "cohorts"
   add_foreign_key "users", "roles"
 end
