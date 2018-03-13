@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180311121308) do
+ActiveRecord::Schema.define(version: 20180313014139) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,19 +36,19 @@ ActiveRecord::Schema.define(version: 20180311121308) do
     t.index ["task_id"], name: "index_cohort_tasks_on_task_id"
   end
 
-  create_table "cohort_users", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "cohort_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["cohort_id"], name: "index_cohort_users_on_cohort_id"
-    t.index ["user_id"], name: "index_cohort_users_on_user_id"
-  end
-
   create_table "cohorts", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "cohorts_users", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "cohort_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cohort_id"], name: "index_cohorts_users_on_cohort_id"
+    t.index ["user_id"], name: "index_cohorts_users_on_user_id"
   end
 
   create_table "feedbacks", force: :cascade do |t|
@@ -112,8 +112,8 @@ ActiveRecord::Schema.define(version: 20180311121308) do
   add_foreign_key "cohort_tasks", "cohort_task_categories", column: "category_id"
   add_foreign_key "cohort_tasks", "cohorts"
   add_foreign_key "cohort_tasks", "tasks"
-  add_foreign_key "cohort_users", "cohorts"
-  add_foreign_key "cohort_users", "users"
+  add_foreign_key "cohorts_users", "cohorts"
+  add_foreign_key "cohorts_users", "users"
   add_foreign_key "feedbacks", "user_cohort_tasks"
   add_foreign_key "feedbacks", "users", column: "author_id"
   add_foreign_key "students", "users"
