@@ -12,7 +12,7 @@
     setTimeout(searchGithub, 3000);
 
     function searchGithub() {
-      var getPRs = fetch('https://api.github.com/repos/kasun-maldeni/WDI_14_HOMEWORK/pulls').then(function(response) {
+      var getPRs = fetch('https://api.github.com/repos/kasun-maldeni/WDI_15_HOMEWORK/pulls').then(function(response) {
         return response.json();
       }).then(function(pullRequests) {
         var ghUsername = QS('[data-gh-username]').dataset.ghUsername;
