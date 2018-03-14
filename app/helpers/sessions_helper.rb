@@ -1,6 +1,6 @@
 module SessionsHelper
   def current_user
-    @current_user ||= User.joins(:role).where(user: {id: session[:user_id]})
+    @current_user ||= User.joins(:role).where(users: {id: session[:user_id]}).first
   end
 
   def logged_in?

@@ -1,6 +1,6 @@
 class DashboardController < ApplicationController
   def index
-    @cohort_tasks = CohortTask.recent_tasks(current_user.cohort_id)
+    @cohort_tasks = CohortTask.recent_tasks(current_user.cohorts.first.cohort_id)
   end
 
   def warmups
