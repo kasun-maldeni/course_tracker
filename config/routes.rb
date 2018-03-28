@@ -16,5 +16,6 @@ Rails.application.routes.draw do
     resources :cohorts, only: [:index, :new, :create, :show]
     post '/cohorts/create_cohort_task', to: 'cohorts#create_cohort_task'
     resources :cohort_tasks, only: [:show]
+    resources :user_cohort_tasks, only: [:edit, :update]
   end
 end

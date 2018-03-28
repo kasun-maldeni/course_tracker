@@ -1,0 +1,23 @@
+<section class="admin user_cohort_tasks edit">
+  <h2>
+    <%= @uct.cohort_task.task.name %>
+    -
+    <%= @uct.user.first_name %>
+  </h2>
+  <%= form_for @uct, url: {action: :update} do |f| %>
+    <%= f.label :complete %>
+    <%= f.select :complete, options_for_select([true, false], @uct.complete) %>
+    <%= f.fields_for :feedbacks, Feedback.new do |fb| %>
+      <%= fb.label :message %>
+      <%= fb.text_field :message %>
+    <% end %>
+    <%= f.submit %>
+  <% end %>
+  <h3>Feedback:</h3>
+  <% @uct.feedbacks.each do |feedback| %>
+    <div>
+      <strong><%= local_time(feedback.created_at) %></strong>
+      <%= feedback.message %>
+    </div>
+  <% end %>
+</section>
