@@ -6,6 +6,8 @@ class UserCohortTask < ApplicationRecord
   scope :task_progress, ->(user_cohort_task_id) {
     joins(cohort_task: [:task], feedbacks: [:author])
     .includes(cohort_task: [:task], feedbacks: [:author])
-    .where(id: user_cohort_task_id).first
+    .where(id: user_cohort_task_id)
+    .order('feedbacks.created_at DESC')
+    .first
   }
 end
