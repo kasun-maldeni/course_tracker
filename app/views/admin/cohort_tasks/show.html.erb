@@ -1,0 +1,14 @@
+<section class="admin cohort_tasks show">
+  <h2><%= @ct.task.name %></h2>
+  <% @uct.each do |uct| %>
+    <article class="user-cohort-task">
+      <%= uct.user.first_name %>
+      <% if uct.complete %>
+        <i class="material-icons success">check_circle</i>
+      <% else %>
+        <i class="material-icons error">cancel</i>
+      <% end %>
+      <%= link_to 'edit/feedback', edit_admin_user_cohort_task_path(uct.id) %>
+    </article>
+  <% end %>
+</section>
