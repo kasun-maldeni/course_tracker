@@ -1,0 +1,17 @@
+<section class="admin cohorts new">
+  <h2>Create Cohort</h2>
+  <% if @errors %>
+    <ul class="error-messages">
+      <% @errors.each do |error| %>
+        <%= content_tag :li, error %>
+      <% end %>
+    </ul>
+  <% end %>
+  <%= form_for @cohort, url: {action: :create} do |f| %>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+    <%= label_tag :students %>
+    <%= text_area_tag :students, nil, {rows: '20', cols: '50'} %>
+    <%= f.submit %>
+  <% end %>
+</section>

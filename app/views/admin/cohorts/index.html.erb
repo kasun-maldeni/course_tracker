@@ -1,0 +1,14 @@
+<section class="admin cohorts index">
+  <h2>Cohorts</h2>
+  <%= link_to 'new cohort', new_admin_cohort_path %>
+  <table>
+    <tr>
+      <th>Name</th>
+    </tr>
+    <% @cohorts.each do |c| %>
+      <tr>
+        <td><%= link_to c.name, admin_cohort_path(c.id) %></td>
+      </tr>
+    <% end %>
+  </table>
+</section>

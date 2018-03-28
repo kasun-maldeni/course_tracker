@@ -1,0 +1,19 @@
+<section class="admin cohorts show">
+  <h2><%= @cohort.name %></h2>
+  <%= form_for @cohort.cohort_tasks.build, url: {action: :create_cohort_task} do |f| %>
+    <%= f.hidden_field :cohort_id %>
+    <%= f.select :task_id, options_for_select(@tasks) %>
+    <%= f.select :category_id, options_for_select(@categories) %>
+    <%= f.datetime_field :release_date %>
+    <%= f.submit %>
+  <% end %>
+  <ul>
+    <% @cohort_tasks.each do |ct| %>
+      <li>
+        <%= link_to ct.task.name, ct.task.question_link, target: "_blank" %>
+        <span><%= local_time(ct.release_date) %></span>
+        <span><%= link_to 'progress', admin_cohort_task_path(ct) %></span>
+      </li>
+    <% end %>
+  </ul>
+</section>

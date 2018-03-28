@@ -13,5 +13,7 @@ Rails.application.routes.draw do
   get '/admin', to: 'admin#index', as: 'admin'
   namespace :admin do
     resources :tasks, only: [:index, :new, :create]
+    resources :cohorts, only: [:index, :new, :create, :show]
+    post '/cohorts/create_cohort_task', to: 'cohorts#create_cohort_task'
   end
 end
