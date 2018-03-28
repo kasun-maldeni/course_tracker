@@ -189,3 +189,14 @@ th, td {
     }
   }
 }
+
+@media screen and (max-width: 25em) {
+  header nav {
+    ul {
+      flex-direction: column;
+    }
+    li {
+      padding: 0.5em 0;
+    }
+  }
+}

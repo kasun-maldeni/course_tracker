@@ -1,11 +1,28 @@
 .dashboard.index {
   .github-status {
     span, .material-icons {
-      display: inline-block;
       vertical-align: middle;
     }
   }
   h3 {
     padding-top: 30px;
+  }
+}
+
+.dashboard.task-progress {
+  .complete-label, .material-icons {
+    vertical-align: middle;
+  }
+  .feedbacks article {
+    padding-bottom: 20px;
+  }
+  .message {
+    background-color: #ccc;
+    padding: 20px;
+  }
+  .message-info {
+    display: flex;
+    justify-content: flex-end;
+    color: #555;
   }
 }
