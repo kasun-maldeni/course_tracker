@@ -13,15 +13,15 @@ class User < ApplicationRecord
                        }, on: :update
 
   def self.create_admin email
-    create_user 'admin', email
+    User.create(create_params 'admin', email)
   end
 
   def create_cohort name
     self.cohorts.create(name: name) if self.role.name == 'admin'
   end
 
-  def self.create_user role_name, email
+  def self.create_params role_name, email
     role_id = Role.find_by(name: role_name).id
-    User.create(email: email, uuid: SecureRandom.uuid, password: SecureRandom.hex, is_signed_up: false, is_active: true, role_id: role_id)
+    {email: email, uuid: SecureRandom.uuid, password: SecureRandom.hex, is_signed_up: false, is_active: true, role_id: role_id}
   end
 end

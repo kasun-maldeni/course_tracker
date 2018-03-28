@@ -12,11 +12,11 @@ class CohortTask < ApplicationRecord
   }
 
   scope :warmups, ->(user) {
-    by_category('warmup', user.cohort_id)
+    by_category('warmup', user.cohorts.first.id)
   }
 
   scope :homework, ->(user) {
-    by_category('homework', user.cohort_id)
+    by_category('homework', user.cohorts.first.id)
     .joins(:user_cohort_tasks)
     .includes(:user_cohort_tasks)
     .where(user_cohort_tasks: {user_id: user.id})
