@@ -1,15 +1,23 @@
 <section class="dashboard task-progress">
-  <h2>Task Progress</h2>
-  <%= @uct.complete.to_s %>
-  <%= local_time(@uct.cohort_task.release_date) %>
-  <%= link_to @uct.cohort_task.task.name, @uct.cohort_task.task.question_link, target: "_blank" %>
-  <table>
+  <h2>Feedback for <%= link_to @uct.cohort_task.task.name, @uct.cohort_task.task.question_link, target: "_blank" %></h2>
+  <ul>
+    <li><strong class="complete-label">Complete:</strong>
+      <% if @uct.complete %>
+        <i class="material-icons success">check_circle</i>
+      <% else %>
+        <i class="material-icons error">cancel</i>
+      <% end %>
+    </li>
+    <li><strong>Date released:</strong> <%= local_time(@uct.cohort_task.release_date) %></li>
+  </ul>
+  <section class="feedbacks">
     <% @uct.feedbacks.each do |fb| %>
-    <tr>
-      <td><%= fb.message %></td>
-      <td><%= fb.author.first_name %></td>
-      <td><%= local_time(fb.created_at) %></td>
-    </tr>
+    <article>
+      <main class="message"><%= fb.message %></main>
+      <aside class="message-info">
+        <%= local_time(fb.created_at) %> &#9642; <%= fb.author.first_name %>
+      </aside>
+    </article>
     <% end %>
-  </table>
+  </section>
 </section>

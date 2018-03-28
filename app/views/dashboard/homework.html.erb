@@ -16,7 +16,9 @@
       <% end %>
       <td><%= link_to ct.task.name, ct.task.question_link, target: "_blank" %></td>
       <td><%= local_time(ct.release_date) %></td>
-      <td><%= link_to(content_tag(:i, 'feedback', class: 'material-icons'), "/task_progress/#{ct.user_cohort_tasks.first.id}") %></td>
+      <% if ct.user_cohort_tasks.first.feedbacks.count > 0 %>
+        <td><%= link_to(content_tag(:i, 'feedback', class: 'material-icons'), "/task_progress/#{ct.user_cohort_tasks.first.id}") %></td>
+      <% end %>
     </tr>
     <% end %>
   </table>
