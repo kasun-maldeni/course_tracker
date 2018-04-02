@@ -7,13 +7,28 @@
     <%= f.datetime_field :release_date %>
     <%= f.submit %>
   <% end %>
+  <h3>Homework:</h3>
   <ul>
     <% @cohort_tasks.each do |ct| %>
-      <li>
-        <%= link_to ct.task.name, ct.task.question_link, target: "_blank" %>
-        <span><%= local_time(ct.release_date) %></span>
-        <span><%= link_to 'progress', admin_cohort_task_path(ct) %></span>
-      </li>
+      <% if ct.category.name == 'homework' %>
+        <li>
+          <%= link_to ct.task.name, ct.task.question_link, target: "_blank" %>
+          <span><%= local_time(ct.release_date) %></span>
+          <span><%= link_to 'progress', admin_cohort_task_path(ct) %></span>
+        </li>
+      <% end %>
+    <% end %>
+  </ul>
+  <h3>Warmups:</h3>
+  <ul>
+    <% @cohort_tasks.each do |ct| %>
+      <% if ct.category.name == 'warmup' %>
+        <li>
+          <%= link_to ct.task.name, ct.task.question_link, target: "_blank" %>
+          <span><%= local_time(ct.release_date) %></span>
+          <span><%= link_to 'progress', admin_cohort_task_path(ct) %></span>
+        </li>
+      <% end %>
     <% end %>
   </ul>
 </section>
