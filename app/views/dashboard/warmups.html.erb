@@ -10,7 +10,9 @@
     <tr>
       <td><%= link_to ct.task.name, ct.task.question_link, target: "_blank" %></td>
       <td><%= local_time(ct.release_date) %></td>
-      <td><%= link_to 'solution', ct.task.solution_link, target: "_blank" %></td>
+      <% if Time.now > ct.release_date + 2.hours %>
+        <td><%= link_to 'solution', ct.task.solution_link, target: "_blank" %></td>
+      <% end %>
     </tr>
     <% end %>
   </table>
