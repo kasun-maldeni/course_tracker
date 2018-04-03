@@ -2,7 +2,7 @@ class CohortTask < ApplicationRecord
   belongs_to :cohort
   belongs_to :task
   belongs_to :category, class_name: 'CohortTaskCategory'
-  has_many :user_cohort_tasks
+  has_many :user_cohort_tasks, dependent: :destroy
   has_many :users, through: :user_cohort_tasks
 
   scope :recent_tasks, ->(cohort_id) {

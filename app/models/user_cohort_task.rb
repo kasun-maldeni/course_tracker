@@ -1,7 +1,7 @@
 class UserCohortTask < ApplicationRecord
   belongs_to :user
   belongs_to :cohort_task
-  has_many :feedbacks
+  has_many :feedbacks, dependent: :destroy
 
   scope :task_progress, ->(user_cohort_task_id) {
     joins(cohort_task: [:task], feedbacks: [:author])
