@@ -25,6 +25,7 @@ class CohortTask < ApplicationRecord
   scope :by_category, ->(category_name, cohort_id) {
     tasks_for_cohort(cohort_id)
     .where(cohort_task_categories: {name: category_name})
+    .where('release_date < ?', Time.now)
   }
 
   scope :tasks_for_cohort, ->(cohort_id) {
