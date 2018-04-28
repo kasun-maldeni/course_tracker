@@ -8,27 +8,45 @@
     <%= f.submit %>
   <% end %>
   <h3>Homework:</h3>
-  <ul>
-    <% @cohort_tasks.each do |ct| %>
-      <% if ct.category.name == 'homework' %>
-        <li>
-          <%= link_to ct.task.name, ct.task.question_link, target: "_blank" %>
-          <span><%= local_time(ct.release_date) %></span>
-          <span><%= link_to 'progress', admin_cohort_task_path(ct) %></span>
-        </li>
+  <table style='overflow-x: scroll; width: 100%; display: block;'>
+    <tr>
+      <th>Students</th>
+      <% @cohort_tasks.each do |ct| %>
+        <% if ct.category.name == 'homework' %>
+          <th style='min-width: 120px;'>
+            <%= local_time(ct.release_date) %><br>
+            <%= link_to ct.task.name, ct.task.question_link, target: "_blank" %>
+          </th>
+        <% end %>
       <% end %>
+    </tr>
+    <% @students.each do |student| %>
+      <tr>
+        <th><%= student.first_name %></th>
+        <% student.user_cohort_tasks.each do |uct| %>
+          <td>
+            <a href="<%= edit_admin_user_cohort_task_path(uct.id) %>">
+              <% if uct.complete %>
+                <i class="material-icons success">check_circle</i>
+              <% else %>
+                <i class="material-icons error">cancel</i>
+              <% end %>
+            </a>
+          </td>
+        <% end %>
+      </tr>
     <% end %>
-  </ul>
+  </table>
   <h3>Warmups:</h3>
-  <ul>
+  <table>
     <% @cohort_tasks.each do |ct| %>
       <% if ct.category.name == 'warmup' %>
-        <li>
-          <%= link_to ct.task.name, ct.task.question_link, target: "_blank" %>
-          <span><%= local_time_hours(ct.release_date) %></span>
-          <span><%= link_to 'progress', admin_cohort_task_path(ct) %></span>
-        </li>
+        <tr>
+          <td><%= link_to ct.task.name, ct.task.question_link, target: "_blank" %></td>
+          <td><%= link_to 'solution', ct.task.solution_link, target: "_blank" %></td>
+          <td><%= local_time_hours(ct.release_date) %></td>
+        </tr>
       <% end %>
     <% end %>
-  </ul>
+  </table>
 </section>

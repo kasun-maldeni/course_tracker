@@ -22,9 +22,10 @@ class Admin::CohortsController < AdminController
 
   def show
     @cohort = Cohort.find_by({id: params[:id]})
-    @cohort_tasks = CohortTask.joins(:task).includes(:task).where(cohort_id: @cohort.id)
+    @cohort_tasks = CohortTask.joins(:task, :category).includes(:task, :category).where(cohort_id: @cohort.id).order(:id)
     @tasks = Task.pluck(:name, :id)
     @categories = CohortTaskCategory.pluck(:name, :id)
+    @students = User.joins(:cohorts, :role, :user_cohort_tasks).includes(:user_cohort_tasks).where(cohorts: {id: @cohort.id}, roles: {name: 'student'}).order(:first_name, 'user_cohort_tasks.cohort_task_id')
   end
 
   def create_cohort_task
