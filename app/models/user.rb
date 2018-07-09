@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   has_and_belongs_to_many :cohorts
-  has_many :user_cohort_tasks
+  has_many :user_cohort_tasks, dependent: :destroy
   belongs_to :role
 
   has_secure_password
